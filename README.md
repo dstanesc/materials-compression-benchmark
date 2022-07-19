@@ -50,7 +50,7 @@ Lz4js x 3,253 ops/sec ±2.06% (89 runs sampled)
 The fastest option is Lz4js
 ```
 
-```json
+```js
 {
   min: {
     bufSize: 53398,
