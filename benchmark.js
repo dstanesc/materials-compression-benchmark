@@ -39,9 +39,9 @@ const bench = ({ buf, bufSize }, options) => {
   const pakoRate = rate(bufSize, serPakoSize);
   const lz4jsRate = rate(bufSize, serLz4Size);
 
-  console.log(`Material brotli compressed size ${serBrotliSize} bytes, compression rate ${brotliRate} %`);
-  console.log(`Material pako compressed size ${serPakoSize} bytes, compression rate ${pakoRate} %`);
-  console.log(`Material lz4 compressed size ${serLz4Size} bytes, compression rate ${lz4jsRate} %`);
+  console.log(`Material size ${bufSize} bytes, brotli ${JSON.stringify(options.brotli)} compressed size ${serBrotliSize} bytes, compression rate ${brotliRate} %`);
+  console.log(`Material size ${bufSize} bytes, pako ${JSON.stringify(options.pako)} compressed size ${serPakoSize} bytes, compression rate ${pakoRate} %`);
+  console.log(`Material size ${bufSize} bytes, lz4 (default) compressed size ${serLz4Size} bytes, compression rate ${lz4jsRate} %`);
 
   const compressSuite = new Benchmark.Suite('Material 300K Compression Suite')
 
@@ -49,6 +49,7 @@ const bench = ({ buf, bufSize }, options) => {
     const suite = event.currentTarget;
     const fastestOption = suite.filter('fastest').map('name')
     console.log(`The fastest option is ${fastestOption}`)
+    console.log()
   })
 
   let brotliHz;
@@ -91,6 +92,8 @@ const mat20 = matData([4, 20, 100]); // 20 props ~ 10KB
 const mat100 = matData([4, 100, 100]); // 100 props ~ 50KB
 const mat500 = matData([4, 500, 100]); // 500 props ~ 250KB
 const mat1000 = matData([4, 1000, 100]); // 1000 props ~ 500KB
+
+console.log()
 
 const qualityBench = (matData) => {
   const min = bench(matData, { brotli: { quality: 1 }, pako: { level: 1 } });  // min compression
