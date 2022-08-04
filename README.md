@@ -22,54 +22,55 @@ npm install
 npm start
 ```
 
-## Example Results
+## Typical Material Results
 
 Eg. Generated material w/ 100 properties
 ```
-Material size 302731 bytes, brotli {"quality":1} compressed size 24219 bytes, compression rate 92.00 %
-Material size 302731 bytes, pako {"level":1} compressed size 28606 bytes, compression rate 90.55 %
-Material size 302731 bytes, lz4 (default) compressed size 33300 bytes, compression rate 89.00 %
-Brotli x 330 ops/sec ±0.31% (92 runs sampled)
-Pako x 231 ops/sec ±0.82% (84 runs sampled)
-Lz4js x 740 ops/sec ±0.56% (90 runs sampled)
+Compression and decompression combined size 276303 bytes, brotli {"quality":1} compressed size 24062 bytes, compression rate 91.29 %
+Compression and decompression combined size 276303 bytes, pako {"level":1} compressed size 27351 bytes, compression rate 90.10 %
+Compression and decompression combined size 276303 bytes, lz4 (default) compressed size 32912 bytes, compression rate 88.09 %
+Brotli x 126 ops/sec ±3.95% (67 runs sampled)
+Pako x 169 ops/sec ±1.04% (85 runs sampled)
+Lz4js x 372 ops/sec ±2.19% (76 runs sampled)
 The fastest option is Lz4js
 
-Material size 302731 bytes, brotli {"quality":5} compressed size 21571 bytes, compression rate 92.87 %
-Material size 302731 bytes, pako {"level":5} compressed size 25201 bytes, compression rate 91.68 %
-Material size 302731 bytes, lz4 (default) compressed size 33300 bytes, compression rate 89.00 %
-Brotli x 140 ops/sec ±0.30% (80 runs sampled)
-Pako x 138 ops/sec ±0.43% (78 runs sampled)
-Lz4js x 746 ops/sec ±0.41% (93 runs sampled)
+Compression and decompression combined size 276303 bytes, brotli {"quality":5} compressed size 21242 bytes, compression rate 92.31 %
+Compression and decompression combined size 276303 bytes, pako {"level":5} compressed size 24807 bytes, compression rate 91.02 %
+Compression and decompression combined size 276303 bytes, lz4 (default) compressed size 32912 bytes, compression rate 88.09 %
+Brotli x 89.98 ops/sec ±2.09% (66 runs sampled)
+Pako x 115 ops/sec ±0.39% (83 runs sampled)
+Lz4js x 366 ops/sec ±2.39% (84 runs sampled)
 The fastest option is Lz4js
 
-Material size 302731 bytes, brotli {"quality":11} compressed size 18925 bytes, compression rate 93.75 %
-Material size 302731 bytes, pako {"level":9} compressed size 24399 bytes, compression rate 91.94 %
-Material size 302731 bytes, lz4 (default) compressed size 33300 bytes, compression rate 89.00 %
-Brotli x 1.93 ops/sec ±2.98% (9 runs sampled)
-Pako x 116 ops/sec ±1.06% (73 runs sampled)
-Lz4js x 734 ops/sec ±0.97% (91 runs sampled)
+Compression and decompression combined size 276303 bytes, brotli {"quality":11} compressed size 18809 bytes, compression rate 93.19 %
+Compression and decompression combined size 276303 bytes, pako {"level":9} compressed size 24145 bytes, compression rate 91.26 %
+Compression and decompression combined size 276303 bytes, lz4 (default) compressed size 32912 bytes, compression rate 88.09 %
+Brotli x 1.40 ops/sec ±1.67% (8 runs sampled)
+Pako x 99.24 ops/sec ±0.47% (73 runs sampled)
+Lz4js x 368 ops/sec ±2.26% (75 runs sampled)
 The fastest option is Lz4js
 ```
 
 ```js
 {
   min: {
-    bufSize: 302731,
-    ops: { brotli: 330, pako: 231, lz4js: 740 },
-    rate: { brotli: '92.00', pako: '90.55', lz4js: '89.00' },
+    bufSize: 276303,
+    ops: { brotli: 126, pako: 168, lz4js: 372 },
+    rate: { brotli: '91.29', pako: '90.10', lz4js: '88.09' },
     options: { brotli: 1, pako: 1 }
   },
   med: {
-    bufSize: 302731,
-    ops: { brotli: 140, pako: 138, lz4js: 746 },
-    rate: { brotli: '92.87', pako: '91.68', lz4js: '89.00' },
+    bufSize: 276303,
+    ops: { brotli: 89, pako: 114, lz4js: 365 },
+    rate: { brotli: '92.31', pako: '91.02', lz4js: '88.09' },
     options: { brotli: 5, pako: 5 }
   },
   max: {
-    bufSize: 302731,
-    ops: { brotli: 1, pako: 115, lz4js: 734 },
-    rate: { brotli: '93.75', pako: '91.94', lz4js: '89.00' },
+    bufSize: 276303,
+    ops: { brotli: 1, pako: 99, lz4js: 368 },
+    rate: { brotli: '93.19', pako: '91.26', lz4js: '88.09' },
     options: { brotli: 11, pako: 9 }
   }
 }
+
 ```
