@@ -113,19 +113,19 @@ const qualityBench = (full, matData) => {
 
 console.log("Compression only")
 
-const res20 = qualityBench(false, mat20);
+let res20 = qualityBench(false, mat20);
 
 console.log(res20)
 
-const res100 = qualityBench(false, mat100);
+let res100 = qualityBench(false, mat100);
 
 console.log(res100)
 
-const res500 = qualityBench(false, mat500);
+let res500 = qualityBench(false, mat500);
 
 console.log(res500)
 
-const res1000 = qualityBench(false, mat1000);
+let res1000 = qualityBench(false, mat1000);
 
 console.log(res1000)
 
