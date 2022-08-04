@@ -26,7 +26,7 @@ const matData = (args) => {
   return { buf, bufSize }
 }
 
-const bench = ({ buf, bufSize }, options) => {
+const bench = (full, { buf, bufSize }, options) => {
   const serPako = pako.deflate(buf, options.pako);
   const serLz4 = lz4.compress(buf);
   const serBrotli = brotli.compress(buf, options.brotli);
@@ -75,13 +75,22 @@ const bench = ({ buf, bufSize }, options) => {
 
   compressSuite
     .add('Brotli', async () => {
-      brotli.compress(buf, options.brotli);
+      const ser = brotli.compress(buf, options.brotli);
+      if(full){
+        brotli.decompress(ser);
+      }
     })
     .add('Pako', async () => {
-      pako.deflate(buf, options.pako);
+      const ser = pako.deflate(buf, options.pako);
+      if(full){
+        pako.inflate(ser);
+      }
     })
     .add('Lz4js', async () => {
-      lz4.compress(buf);
+      const ser = lz4.compress(buf);
+      if(full){
+        lz4.decompress(ser);
+      }
     })
     .run()
 
@@ -95,25 +104,46 @@ const mat1000 = matData([4, 1000, 100]); // 1000 props ~ 500KB
 
 console.log()
 
-const qualityBench = (matData) => {
-  const min = bench(matData, { brotli: { quality: 1 }, pako: { level: 1 } });  // min compression
-  const med = bench(matData, { brotli: { quality: 5 }, pako: { level: 5 } });  // medium compression
-  const max = bench(matData, { brotli: { quality: 11 }, pako: { level: 9 } }); // max compression
+const qualityBench = (full, matData) => {
+  const min = bench(full, matData, { brotli: { quality: 1 }, pako: { level: 1 } });  // min compression
+  const med = bench(full, matData, { brotli: { quality: 5 }, pako: { level: 5 } });  // medium compression
+  const max = bench(full, matData, { brotli: { quality: 11 }, pako: { level: 9 } }); // max compression
   return { min, med, max }
 }
 
-const res20 = qualityBench(mat20);
+console.log("Compression only")
+
+const res20 = qualityBench(false, mat20);
 
 console.log(res20)
 
-const res100 = qualityBench(mat100);
+const res100 = qualityBench(false, mat100);
 
 console.log(res100)
 
-const res500 = qualityBench(mat500);
+const res500 = qualityBench(false, mat500);
 
 console.log(res500)
 
-const res1000 = qualityBench(mat1000);
+const res1000 = qualityBench(false, mat1000);
+
+console.log(res1000)
+
+
+console.log("Compression and decompression")
+
+res20 = qualityBench(true, mat20);
+
+console.log(res20)
+
+res100 = qualityBench(true, mat100);
+
+console.log(res500)
+
+res500 = qualityBench(true, mat500);
+
+console.log(res500)
+
+res1000 = qualityBench(true, mat1000);
 
 console.log(res1000)
