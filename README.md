@@ -24,7 +24,7 @@ npm start
 
 ## Typical Material Results
 
-Eg. Generated material w/ 100 properties
+Eg. Generated material w/ 500 properties
 ```
 Compression and decompression combined size 276303 bytes, brotli {"quality":1} compressed size 24062 bytes, compression rate 91.29 %
 Compression and decompression combined size 276303 bytes, pako {"level":1} compressed size 27351 bytes, compression rate 90.10 %
