@@ -39,9 +39,10 @@ const bench = (full, { buf, bufSize }, options) => {
   const pakoRate = rate(bufSize, serPakoSize);
   const lz4jsRate = rate(bufSize, serLz4Size);
 
-  console.log(`Material size ${bufSize} bytes, brotli ${JSON.stringify(options.brotli)} compressed size ${serBrotliSize} bytes, compression rate ${brotliRate} %`);
-  console.log(`Material size ${bufSize} bytes, pako ${JSON.stringify(options.pako)} compressed size ${serPakoSize} bytes, compression rate ${pakoRate} %`);
-  console.log(`Material size ${bufSize} bytes, lz4 (default) compressed size ${serLz4Size} bytes, compression rate ${lz4jsRate} %`);
+  const subj = full ? "Compression and decompression combined" : "Compression only";
+  console.log(`${subj} size ${bufSize} bytes, brotli ${JSON.stringify(options.brotli)} compressed size ${serBrotliSize} bytes, compression rate ${brotliRate} %`);
+  console.log(`${subj} size ${bufSize} bytes, pako ${JSON.stringify(options.pako)} compressed size ${serPakoSize} bytes, compression rate ${pakoRate} %`);
+  console.log(`${subj} size ${bufSize} bytes, lz4 (default) compressed size ${serLz4Size} bytes, compression rate ${lz4jsRate} %`);
 
   const compressSuite = new Benchmark.Suite('Material 300K Compression Suite')
 
@@ -111,7 +112,6 @@ const qualityBench = (full, matData) => {
   return { min, med, max }
 }
 
-console.log("Compression only")
 
 let res20 = qualityBench(false, mat20);
 
@@ -130,7 +130,6 @@ let res1000 = qualityBench(false, mat1000);
 console.log(res1000)
 
 
-console.log("Compression and decompression")
 
 res20 = qualityBench(true, mat20);
 
