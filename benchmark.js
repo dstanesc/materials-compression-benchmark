@@ -137,7 +137,7 @@ console.log(res20)
 
 res100 = qualityBench(true, mat100);
 
-console.log(res500)
+console.log(res100)
 
 res500 = qualityBench(true, mat500);
 
