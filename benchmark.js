@@ -11,6 +11,8 @@ import * as lz4 from 'lz4js'
 import * as pako from 'pako'
 import * as brotli from 'brotli'
 
+import { plot } from './plot.js';
+
 const rate = (origSize, deflatedSize) => {
   return (((origSize - deflatedSize) / origSize) * 100).toFixed(2);
 }
@@ -77,25 +79,25 @@ const bench = (full, { buf, bufSize }, options) => {
   compressSuite
     .add('Brotli', async () => {
       const ser = brotli.compress(buf, options.brotli);
-      if(full){
+      if (full) {
         brotli.decompress(ser);
       }
     })
     .add('Pako', async () => {
       const ser = pako.deflate(buf, options.pako);
-      if(full){
+      if (full) {
         pako.inflate(ser);
       }
     })
     .add('Lz4js', async () => {
       const ser = lz4.compress(buf);
-      if(full){
+      if (full) {
         lz4.decompress(ser);
       }
     })
     .run()
 
-  return { bufSize: bufSize, ops: { brotli: brotliHz, pako: pakoHz, lz4js: lz4jsHz }, rate: { brotli: brotliRate, pako: pakoRate, lz4js: lz4jsRate }, options: { brotli: options.brotli.quality, pako: options.pako.level } }
+  return { initial: bufSize, compressed: { brotli: serBrotliSize, pako: serPakoSize, lz4js: serLz4Size }, ops: { brotli: brotliHz, pako: pakoHz, lz4js: lz4jsHz }, rate: { brotli: brotliRate, pako: pakoRate, lz4js: lz4jsRate }, options: { brotli: options.brotli.quality, pako: options.pako.level } }
 }
 
 const mat20 = matData([4, 20, 100]); // 20 props ~ 10KB
@@ -115,34 +117,34 @@ const qualityBench = (full, matData) => {
 
 let res20 = qualityBench(false, mat20);
 
-console.log(res20)
+plot('', res20)
 
 let res100 = qualityBench(false, mat100);
 
-console.log(res100)
+plot('', res100)
 
 let res500 = qualityBench(false, mat500);
 
-console.log(res500)
+plot('', res500)
 
 let res1000 = qualityBench(false, mat1000);
 
-console.log(res1000)
+plot('', res1000)
 
 
 
 res20 = qualityBench(true, mat20);
 
-console.log(res20)
+plot('-Decompression', res20)
 
 res100 = qualityBench(true, mat100);
 
-console.log(res100)
+plot('-Decompression', res100)
 
 res500 = qualityBench(true, mat500);
 
-console.log(res500)
+plot('-Decompression', res500)
 
 res1000 = qualityBench(true, mat1000);
 
-console.log(res1000)
+plot('-Decompression', res1000)

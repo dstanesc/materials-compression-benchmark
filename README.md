@@ -26,51 +26,48 @@ npm start
 
 Eg. Generated material w/ 500 properties
 ```
-Compression and decompression combined size 276303 bytes, brotli {"quality":1} compressed size 24062 bytes, compression rate 91.29 %
-Compression and decompression combined size 276303 bytes, pako {"level":1} compressed size 27351 bytes, compression rate 90.10 %
-Compression and decompression combined size 276303 bytes, lz4 (default) compressed size 32912 bytes, compression rate 88.09 %
-Brotli x 126 ops/sec ±3.95% (67 runs sampled)
-Pako x 169 ops/sec ±1.04% (85 runs sampled)
-Lz4js x 372 ops/sec ±2.19% (76 runs sampled)
+Compression and decompression combined size 290890 bytes, brotli {"quality":1} compressed size 24170 bytes, compression rate 91.69 %
+Compression and decompression combined size 290890 bytes, pako {"level":1} compressed size 29428 bytes, compression rate 89.88 %
+Compression and decompression combined size 290890 bytes, lz4 (default) compressed size 33000 bytes, compression rate 88.66 %
+Brotli x 116 ops/sec ±2.49% (66 runs sampled)
+Pako x 149 ops/sec ±2.55% (77 runs sampled)
+Lz4js x 345 ops/sec ±2.19% (71 runs sampled)
 The fastest option is Lz4js
 
-Compression and decompression combined size 276303 bytes, brotli {"quality":5} compressed size 21242 bytes, compression rate 92.31 %
-Compression and decompression combined size 276303 bytes, pako {"level":5} compressed size 24807 bytes, compression rate 91.02 %
-Compression and decompression combined size 276303 bytes, lz4 (default) compressed size 32912 bytes, compression rate 88.09 %
-Brotli x 89.98 ops/sec ±2.09% (66 runs sampled)
-Pako x 115 ops/sec ±0.39% (83 runs sampled)
-Lz4js x 366 ops/sec ±2.39% (84 runs sampled)
+Compression and decompression combined size 290890 bytes, brotli {"quality":5} compressed size 21517 bytes, compression rate 92.60 %
+Compression and decompression combined size 290890 bytes, pako {"level":5} compressed size 25228 bytes, compression rate 91.33 %
+Compression and decompression combined size 290890 bytes, lz4 (default) compressed size 33000 bytes, compression rate 88.66 %
+Brotli x 80.19 ops/sec ±2.39% (68 runs sampled)
+Pako x 105 ops/sec ±1.39% (76 runs sampled)
+Lz4js x 336 ops/sec ±2.54% (74 runs sampled)
 The fastest option is Lz4js
 
-Compression and decompression combined size 276303 bytes, brotli {"quality":11} compressed size 18809 bytes, compression rate 93.19 %
-Compression and decompression combined size 276303 bytes, pako {"level":9} compressed size 24145 bytes, compression rate 91.26 %
-Compression and decompression combined size 276303 bytes, lz4 (default) compressed size 32912 bytes, compression rate 88.09 %
-Brotli x 1.40 ops/sec ±1.67% (8 runs sampled)
-Pako x 99.24 ops/sec ±0.47% (73 runs sampled)
-Lz4js x 368 ops/sec ±2.26% (75 runs sampled)
+Compression and decompression combined size 290890 bytes, brotli {"quality":11} compressed size 18816 bytes, compression rate 93.53 %
+Compression and decompression combined size 290890 bytes, pako {"level":9} compressed size 24382 bytes, compression rate 91.62 %
+Compression and decompression combined size 290890 bytes, lz4 (default) compressed size 33000 bytes, compression rate 88.66 %
+Brotli x 1.82 ops/sec ±3.89% (9 runs sampled)
+Pako x 88.48 ops/sec ±1.20% (74 runs sampled)
+Lz4js x 325 ops/sec ±1.99% (81 runs sampled)
 The fastest option is Lz4js
-```
-
-```js
-{
-  min: {
-    bufSize: 276303,
-    ops: { brotli: 126, pako: 168, lz4js: 372 },
-    rate: { brotli: '91.29', pako: '90.10', lz4js: '88.09' },
-    options: { brotli: 1, pako: 1 }
-  },
-  med: {
-    bufSize: 276303,
-    ops: { brotli: 89, pako: 114, lz4js: 365 },
-    rate: { brotli: '92.31', pako: '91.02', lz4js: '88.09' },
-    options: { brotli: 5, pako: 5 }
-  },
-  max: {
-    bufSize: 276303,
-    ops: { brotli: 1, pako: 99, lz4js: 368 },
-    rate: { brotli: '93.19', pako: '91.26', lz4js: '88.09' },
-    options: { brotli: 11, pako: 9 }
-  }
-}
 
 ```
+20 Properties
+
+![](./img/12068-medc.png)
+![](./img/12068-medcd.png)
+
+100 Properties
+
+![](./img/58428-medc.png)
+![](./img/58428-medcd.png)
+
+500 Properties
+
+![](./img/290890-medc.png)
+![](./img/290890-medcd.png)
+
+1000 Properties
+
+![](./img/574660-medc.png)
+![](./img/574660-medcd.png)
+
