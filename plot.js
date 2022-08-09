@@ -18,7 +18,7 @@ export function color(lib) {
 
 export function traceCode({ lib, values }) {
     const trace = {
-        x: ['Initial (bytes)', 'Final (bytes)', 'Ops/sec (Hz)'],
+        x: ['Final Size (bytes)', 'Rate (%)', 'Ops/sec (Hz)'],
         y: values,
         type: 'bar',
         text: values.map(String),
@@ -38,6 +38,10 @@ export function layoutCode(title) {
         title: title,
         xaxis: {
             tickangle: -45
+        },
+        yaxis: {
+            type: 'log',
+            autorange: true
         },
         barmode: 'group'
     };
@@ -80,22 +84,25 @@ export function transpose(partialResult) {
     const transposed = [
         {
             lib: 'Brotli', values: [
-                partialResult.initial,
+                //partialResult.initial,
                 partialResult.compressed.brotli,
+                partialResult.rate.brotli,
                 partialResult.ops.brotli
             ]
         },
         {
             lib: 'Pako', values: [
-                partialResult.initial,
+                //partialResult.initial,
                 partialResult.compressed.pako,
+                partialResult.rate.pako,
                 partialResult.ops.pako
             ]
         },
         {
             lib: 'Lz4', values: [
-                partialResult.initial,
+                //partialResult.initial,
                 partialResult.compressed.lz4js,
+                partialResult.rate.lz4js,
                 partialResult.ops.lz4js
             ]
         }
