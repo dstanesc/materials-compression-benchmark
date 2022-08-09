@@ -54,23 +54,15 @@ The fastest option is Lz4js
 20 Properties
 
 ![](./img/13126-medc-rate.png)
-![](./img/12068-medc.png)
-![](./img/12068-medcd.png)
 
 100 Properties
 ![](/img/56772-medc-rate.png)
-![](./img/58428-medc.png)
-![](./img/58428-medcd.png)
 
 500 Properties
 
 ![](./img/291257-medc-rate.png)
-![](./img/290890-medc.png)
-![](./img/290890-medcd.png)
 
 1000 Properties
 
 ![](./img/545050-medc-rate.png)
-![](./img/574660-medc.png)
-![](./img/574660-medcd.png)
 
